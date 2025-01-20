@@ -1,8 +1,9 @@
 // import Image from "next/image"
 import Link from "next/link"
 import { Button } from "./ui/button"
+import { DollarSignIcon } from "lucide-react"
 
-
+// TODO: Implement price for build plans
 export type PlanCardType = {
   id: string,
   planId: number,
@@ -14,7 +15,7 @@ export type PlanCardType = {
 const PlanCard = async ({ plan }: { plan: PlanCardType }) => {
   const {
     id,
-    planId,
+    // planId,
     description,
     image,
     title,
@@ -22,22 +23,22 @@ const PlanCard = async ({ plan }: { plan: PlanCardType }) => {
 
   return (
     <li className='project-card group'>
-    <div className='flex-between'>
-      <p className='project-card_date'>
+    <div className='flex-between !justify-end'>
+      {/* <p className='project-card_date'>
         {planId}
-      </p>
+      </p> */}
 
-      {/* <div className='flex gap-1.5'>
-        <EyeIcon className='size-6 text-primary' />
-        <span className='text-16-medium'>{views}</span>
-      </div> */}
+      <div className='flex gap-1.5'>
+        <DollarSignIcon className='size-5 text-primary' />
+        <span className='text-16-medium'>todo: price</span>
+      </div>
     </div>
 
     <div className='flex-between mt-5 gap-5'>
       <div className='flex-1'>
-        <Link href={`/`}>
+        {/* <Link href={`/`}>
           <p className='text-16-medium line-clamp-1'>{title}</p>
-        </Link>
+        </Link> */}
         <Link href={`/plan-details/${id}`}>
           <h3 className='text-26-semibold line-clamp-1'>
             {title}
@@ -65,16 +66,16 @@ const PlanCard = async ({ plan }: { plan: PlanCardType }) => {
         className='project-card_img' />
     </Link>
 
-    <div className='flex-between gap-3 mt-5'>
-      <Link href={`/?query=${title.toLowerCase()}`}>
+    <div className='flex-between gap-3 mt-5 !justify-end'>
+      {/* <Link href={`/?query=${title.toLowerCase()}`}>
         <p className='text-16-medium'>
           {title}
         </p>
-      </Link>
+      </Link> */}
 
       <Button className='project-card_btn' asChild>
         <Link href={`/plan-details/${id}`}>
-          Details
+          View Plan
         </Link>
       </Button>
     </div>

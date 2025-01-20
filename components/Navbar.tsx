@@ -76,7 +76,7 @@ const Navbar = async () => {
             <>
               <Link
               href="/posts">
-                <span>videos</span>
+                <span>posts</span>
               </Link>
               <Link
               href="/products">

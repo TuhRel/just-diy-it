@@ -24,10 +24,10 @@ const ProductCard = async ({ product }: { product: ProductCardType }) => {
 
   return (
     <li className='project-card group'>
-    <div className='flex-between'>
-      <p className='project-card_date'>
+    <div className='flex-between !justify-end'>
+      {/* <p className='project-card_date'>
         {productId}
-      </p>
+      </p> */}
 
       <div className='flex gap-1'>
         <DollarSignIcon className='size-5 text-primary' />
@@ -37,9 +37,9 @@ const ProductCard = async ({ product }: { product: ProductCardType }) => {
 
     <div className='flex-between mt-5 gap-5'>
       <div className='flex-1'>
-        <Link href={`/`}>
+        {/* <Link href={`/`}>
           <p className='text-16-medium line-clamp-1'>{title}</p>
-        </Link>
+        </Link> */}
         <Link href={`/product-details/${id}`}>
           <h3 className='text-26-semibold line-clamp-1'>
             {title}
@@ -67,16 +67,16 @@ const ProductCard = async ({ product }: { product: ProductCardType }) => {
         className='project-card_img' />
     </Link>
 
-    <div className='flex-between gap-3 mt-5'>
-      <Link href={`/?query=${title}`}>
+    <div className='flex-between gap-3 mt-5 !justify-end'>
+      {/* <Link href={`/?query=${title}`}>
         <p className='text-16-medium'>
           {title}
         </p>
-      </Link>
+      </Link> */}
 
       <Button className='project-card_btn' asChild>
         <Link href={`/product-details/${id}`}>
-          Details
+          View Product
         </Link>
       </Button>
     </div>
