@@ -3,14 +3,12 @@ import { getProducts } from '@/lib/actions/product.action'
 
 
 const Page = async ({ searchParams }: { searchParams: Promise<{ query?: string }> }) => {
-
   /** Search query obtained from the search bar */
   const query = (await searchParams).query
   const params = { search: query || '' }
 
   /** Get all post or post from search results */
   const products = (await getProducts(`${params.search}`)) || []
-  
   
   return (
     <>

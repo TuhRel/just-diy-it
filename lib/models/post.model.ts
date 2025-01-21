@@ -24,6 +24,9 @@ const postSchema = new mongoose.Schema({
   ytVideo: {
     type: String,
   },
+  ytDetails: {
+    type: Object,
+  },
   description: {
     type: String,
   },

@@ -1,12 +1,12 @@
 import { getPostById } from '@/lib/actions/post.actions'
-import { formatDate, getVideoDetails } from '@/lib/utils'
-import Image from 'next/image'
-import Link from 'next/link'
+import { formatDate, getYouTubeVideoId } from '@/lib/utils'
+import { EyeIcon } from 'lucide-react'
 import { notFound } from 'next/navigation'
-import React from 'react'
 
 
-// TODO: Turn page into a Component, each type of details page will have its own component which will be conditionally rendered depending on what type of details need to be shown (e.g. video, Product, or plan)
+// TODO #1: Turn page into a Component, each type of details page will have its own component which will be conditionally rendered depending on what type of details need to be shown (e.g. video, Product, or plan)
+
+// TODO #2: Create a format views utility to format the views to be 1.3M or 2.8K etc...
 
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const id = (await params).id
@@ -14,12 +14,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const singlePost = await getPostById(id)
   if (!singlePost) return notFound()
   
-  const { title, description, createdAt, views, image, ytVideo } = singlePost
-
-  // console.log(singlePost)
-
-  const videoDetails = await getVideoDetails(getYouTubeVideoId(ytVideo), process.env.YOUTUBE_API_KEY as string)
-  // console.log(videoDetails)
+  const { title, description, createdAt, views, image, ytVideo, ytDetails } = singlePost
 
   return (
     <>
@@ -32,7 +27,6 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
       </section>
 
       <section className='section_container'>
-
         {ytVideo ? (
           <iframe
             width="100%"
@@ -52,42 +46,23 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
         <div className='space-y-5 mt-10 max-w-4xl mx-auto'>
           <div className='flex-between gap-5'>
-            <Link href="/" className='flex gap-2 items-center mb-3'>
-              <Image
-                src={image}
-                alt="avatar"
-                width={64}
-                height={64}
-                className='rounded-full drop-shadow-lg'
-              />
+            <h3 className='text-30-bold'>{ytDetails ? ytDetails.title : title}</h3>
 
-              <div>
-                <p className='text-20-medium'>{title}</p>
-                <p className='text-16-medium !text-black-300'>{title}</p>
-              </div>
-            </Link>
-
-              <p className='category-tag'>{views}</p>
+            <div className='flex gap-1.5'>
+              <EyeIcon className='size-6 text-primary top-2 relative'/>
+              <p className='category-tag'>{ytDetails ? ytDetails.view : views}</p>
+            </div>
           </div>
 
-          <h3 className='text-30-bold'>{title}</h3>
           <article>
-            <p>{description}</p>
+            <p>{ytDetails ? ytDetails.description : description}</p>
           </article>
         </div>
 
         <hr className='divider' />
       </section>
-
-
     </>
   )
 }
 
 export default page
-
-const getYouTubeVideoId = (url: string) => {
-  const regExp = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^/]+\/.+|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/
-  const match = url.match(regExp)
-  return match ? match[1] : ''
-}

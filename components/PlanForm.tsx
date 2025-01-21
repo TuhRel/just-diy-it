@@ -4,9 +4,11 @@ import React, { useState } from 'react'
 import { Input } from './ui/input'
 import { Button } from './ui/button'
 import { Textarea } from './ui/textarea'
+import { useToast } from '@/hooks/use-toast'
 
 
 const PlanForm = () => {
+  const { toast } = useToast()
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -30,6 +32,10 @@ const PlanForm = () => {
     })
 
     if (response.ok) {
+      toast({
+        title: "Success",
+        description: "Post submission completed successfully."
+      })
       console.log('Form submitted successfully')
       setFormData({
         title: '',
@@ -37,6 +43,10 @@ const PlanForm = () => {
         image: '',
       })
     } else {
+      toast({
+        title: "Error",
+        description: "Post submission failed."
+      })
       console.error('Form submission failed')
     }
   }
@@ -93,8 +103,8 @@ const PlanForm = () => {
             Submit
           </Button>
         </div>
-        </form>
-      </>
+      </form>
+    </>
   )
 }
 

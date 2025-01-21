@@ -1,6 +1,7 @@
 import mongoose from "mongoose"
 import Counter from "./counter.model"
 
+
 const productSchema = new mongoose.Schema({
   productId: {
     type: Number,

@@ -4,9 +4,11 @@ import React, { useState } from 'react'
 import { Input } from './ui/input'
 import { Button } from './ui/button'
 import { Textarea } from './ui/textarea'
+import { useToast } from '@/hooks/use-toast'
 
 
 const ContentForm = () => {
+  const { toast } = useToast()
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -31,6 +33,10 @@ const ContentForm = () => {
     })
 
     if (response.ok) {
+      toast({
+        title: "Success",
+        description: "Post submission completed successfully."
+      })
       console.log('Form submitted successfully')
       setFormData({
         title: '',
@@ -39,6 +45,10 @@ const ContentForm = () => {
         ytVideo: '',
       })
     } else {
+      toast({
+        title: "Error",
+        description: "Post submission failed."
+      })
       console.error('Form submission failed')
     }
   }

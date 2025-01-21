@@ -1,29 +1,34 @@
 import { formatDate } from '@/lib/utils'
-// import { EyeIcon } from 'lucide-react'
-// import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from './ui/button'
 
+
+interface YTDetails {
+  title: string;
+  description: string;
+  thumbnail: string;
+  views: string;
+}
 
 export type PostCardType = {
   id: string,
   createdAt: string,
   description: string,
   image: string,
-  plans: string,
   title: string,
+  ytVideo: string,
+  ytDetails: YTDetails,
   views: number,
 }
 
 const PostCard = async ({ post }: { post: PostCardType }) => {
   const {
-    createdAt,
-    // views,
-    title,
-    // plans,
     id,
+    createdAt,
+    description,
     image,
-    description
+    title,
+    ytDetails,
   } = post
 
   return (
@@ -64,11 +69,19 @@ const PostCard = async ({ post }: { post: PostCardType }) => {
         <p className='project-card_desc'>
           {description}
         </p>
-
-        <img
+        
+        {ytDetails ? (
+          <img
+          src={ytDetails.thumbnail}
+          alt='placeholder'
+          className='project-card_img' />
+        ) : (
+          <img
           src={image}
           alt='placeholder'
           className='project-card_img' />
+        )}
+        
       </Link>
 
       <div className='flex-between gap-3 mt-5 !justify-end'>

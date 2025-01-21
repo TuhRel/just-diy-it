@@ -8,13 +8,13 @@ export async function POST(req: Request) {
     const { title, description, image, ytVideo, postId } = body
 
     updatePost({
+      postId: postId,
+      createdAt: new Date(),
       title: title,
       description: description,
       image: image,
       ytVideo: ytVideo,
-      createdAt: new Date(),
       views: 0,
-      postId: postId,
     })
 
     return NextResponse.json({ message: 'Post submitted successfully' })
@@ -26,20 +26,3 @@ export async function POST(req: Request) {
 
   }
 }
-// if (req.method === 'POST') {
-//   const { title, description, imaage } = req.body
-
-//   updatePost({
-//     title: req?.body?.title,
-//     description: req?.body?.description,
-//     image: req?.body?.image,
-//     createdAt: new Date().toLocaleDateString(),
-//     views: 0,
-//     plans: '',
-//     postId: 99
-//   })
-
-//   return res.status(200).json({message: 'Post submitted successfully' })
-// }
-
-// return res.status(405).json({ message: 'Method not allowed' })

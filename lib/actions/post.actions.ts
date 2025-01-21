@@ -3,6 +3,8 @@ import Plan from "../models/plan.model";
 import Post from "../models/post.model";
 import Product from "../models/product.model";
 import { connectDb } from '../mongoose'
+import { getVideoDetails, getYouTubeVideoId } from "../utils";
+
 
 interface Params {
   postId: number;
@@ -10,7 +12,8 @@ interface Params {
   title: string;
   description: string;
   image: string;
-  ytVideo: string;
+  ytVideo?: string;
+  ytDetails?: object;
   views: number;
 }
 
@@ -22,6 +25,7 @@ export async function updatePost({
   description,
   image,
   ytVideo,
+  ytDetails,
   views,
 }: Params): Promise <void> {
   connectDb("just-diy-it")
@@ -36,6 +40,12 @@ export async function updatePost({
 
       postId = counter.count
     }
+    
+    if (ytVideo) {
+      const videoDetails = await getVideoDetails(await getYouTubeVideoId(ytVideo), process.env.YOUTUBE_API_KEY as string)
+      ytDetails = videoDetails
+    }
+
     await Post.findOneAndUpdate(
       { postId },
       {
@@ -45,6 +55,7 @@ export async function updatePost({
         description,
         image,
         ytVideo,
+        ytDetails,
         views,
       },
       { upsert: true },
@@ -90,7 +101,7 @@ export async function getPostById(id: string) {
 }
 
 export async function getHomePageContent(toFind: string) {
-  connectDb("just-diy-it")
+  await connectDb("just-diy-it")
 
   try {
     const posts = await Post.find({ title: new RegExp(toFind, "i")})

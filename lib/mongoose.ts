@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+
 let initialized = false
 
 export const connectDb = async (dbName: string = '') => {

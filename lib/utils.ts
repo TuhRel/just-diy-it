@@ -5,6 +5,7 @@ import { twMerge } from "tailwind-merge"
 // import Plan from "./models/plan.model"
 // import Post from "./models/post.model"
 
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
@@ -44,13 +45,21 @@ export async function getVideoDetails(videoId: string, apiKey: string) {
   }
 }
 
-// export async function getHomePageContent() {
-//   connectDb("just-diy-it")
+export function getYouTubeVideoId(url: string) {
+  const regExp = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^/]+\/.+|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/
+  const match = url.match(regExp)
+  return match ? match[1] : ''
+}
+
+
+// TODO: FIX getHomePageContent to work from this file
+// export async function getHomePageContent(toFind: string) {
+//   await connectDb("just-diy-it")
 
 //   try {
-//     const posts = await Post.find()
-//     const products = await Product.find()
-//     const plans = await Plan.find()
+//     const posts = await Post.find({ title: new RegExp(toFind, "i")})
+//     const products = await Product.find({ title: new RegExp(toFind, "i")})
+//     const plans = await Plan.find({ title: new RegExp(toFind, "i")})
 //     return { posts, products, plans }
 //   } catch (error: unknown) {
 //     if (error instanceof Error) {

@@ -3,8 +3,6 @@ import { getPlans } from '@/lib/actions/plan.actions'
 
 
 const Page = async ({ searchParams }: { searchParams: Promise<{ query?: string }> }) => {
-
-
   /** Search query obtained from the search bar */
   const query = (await searchParams).query
   const params = { search: query || '' }

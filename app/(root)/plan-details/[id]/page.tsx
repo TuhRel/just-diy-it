@@ -15,8 +15,6 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   
   const { title, description, image } = singlePlan
 
-  // console.log(singlePlan)
-
   return (
     <>
       <section className="orange_container !min-h-[228px]">
@@ -28,8 +26,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
       </section>
 
       <section className='section_container'>
-
-          <img
+        <img
           src={image}
           alt='thumbnail'
           className='w-full h-auto rounded-xl'

@@ -66,8 +66,8 @@ const Navbar = async () => {
                 href="/"
                 className="overflow-hidden rounded-full">
                 <Image
-                  src={session?.user?.image}
-                  alt={session?.user?.name}
+                  src={session?.user?.image as string}
+                  alt={session?.user?.name as string}
                   width={48}
                   height={30} />
               </Link>

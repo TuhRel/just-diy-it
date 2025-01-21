@@ -2,14 +2,11 @@ import PlanCard, { PlanCardType } from "@/components/PlanCard";
 import PostCard, { PostCardType } from "@/components/PostCard";
 import ProductCard, { ProductCardType } from "@/components/ProductCard";
 import SearchForm from "@/components/SearchForm";
-// import { getPlans } from "@/lib/actions/plan.actions";
-// import { getPosts } from "@/lib/actions/post.actions";
-// import { getProducts } from "@/lib/actions/product.action";
 import { getHomePageContent } from "@/lib/actions/post.actions";
 
-export default async function Home({ searchParams }: { searchParams: Promise<{ query?: string }> }) {
-  
 
+
+export default async function Home({ searchParams }: { searchParams: Promise<{ query?: string }> }) {
   /** Search query obtained from the search bar */
   const query = (await searchParams).query
   const params = { search: query || '' }
@@ -17,7 +14,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ q
   const data = await getHomePageContent(`${params.search}`)
   const { posts, products, plans } = data || { posts: [], products: [], plans: [] }
   const sortedPosts = posts?.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-  const latestPosts = sortedPosts?.slice(-3)
+  const latestPosts = sortedPosts?.slice(0, 3)
   
   return (
     <>
@@ -40,10 +37,9 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ q
           {query ? `Content results for "${query}"` : "Latest Content"}
         </p>
 
-        {/** TODO: sort the post array to display the post with latest createdAt date first */}
         <ul className="mt-7 card_grid">
           {latestPosts?.length > 0 ? (
-            latestPosts.slice(-3).map((post: PostCardType) => (
+            latestPosts.map((post: PostCardType) => (
               <PostCard
                 key={post?.id}
                 post={post} />

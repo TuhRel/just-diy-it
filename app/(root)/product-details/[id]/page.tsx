@@ -6,7 +6,6 @@ import React from 'react'
 
 
 // TODO: Turn page into a Component, each type of details page will have its own component which will be conditionally rendered depending on what type of details need to be shown (e.g. video, Product, or plan)
-
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const id = (await params).id
 
@@ -14,8 +13,6 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   if (!singleProduct) return notFound()
   
   const { title, description, price, image } = singleProduct
-
-  // console.log(singleProduct)
 
   return (
     <>
@@ -28,8 +25,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
       </section>
 
       <section className='section_container'>
-
-          <img
+        <img
           src={image}
           alt='thumbnail'
           className='w-full h-auto rounded-xl'
@@ -63,8 +59,6 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
         <hr className='divider' />
       </section>
-
-
     </>
   )
 }
