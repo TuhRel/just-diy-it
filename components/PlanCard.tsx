@@ -3,13 +3,13 @@ import { Button } from "./ui/button"
 import { DollarSignIcon } from "lucide-react"
 
 
-// TODO: Implement price for build plans
 export type PlanCardType = {
   id: string,
   planId: number,
   description: string,
   image: string,
   title: string,
+  price: number,
 }
 
 const PlanCard = async ({ plan }: { plan: PlanCardType }) => {
@@ -18,6 +18,7 @@ const PlanCard = async ({ plan }: { plan: PlanCardType }) => {
     description,
     image,
     title,
+    price,
   } = plan
 
   return (
@@ -29,7 +30,7 @@ const PlanCard = async ({ plan }: { plan: PlanCardType }) => {
 
         <div className='flex gap-1.5'>
           <DollarSignIcon className='size-5 text-primary' />
-          <span className='text-16-medium'>todo: price</span>
+          <span className='text-16-medium'>{price}</span>
         </div>
       </div>
 

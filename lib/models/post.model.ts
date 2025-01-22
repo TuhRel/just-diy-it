@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Counter from "./counter.model";
+import Counter from "@/lib/models/counter.model";
 
 
 const postSchema = new mongoose.Schema({

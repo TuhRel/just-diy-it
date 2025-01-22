@@ -8,6 +8,7 @@ interface Params {
   description: string;
   image: string;
   title: string;
+  price: number;
 }
 
 export async function updatePlan({
@@ -15,6 +16,7 @@ export async function updatePlan({
   description,
   image,
   title,
+  price,
 }: Params): Promise<void> {
   connectDb("just-diy-it")
 
@@ -34,6 +36,7 @@ export async function updatePlan({
         description,
         image,
         title,
+        price,
       },
       { upsert: true },
     )

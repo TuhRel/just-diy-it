@@ -1,12 +1,10 @@
 import { getPostById } from '@/lib/actions/post.actions'
-import { formatDate, getYouTubeVideoId } from '@/lib/utils'
+import { formatDate, formatViews, getYouTubeVideoId } from '@/lib/utils'
 import { EyeIcon } from 'lucide-react'
 import { notFound } from 'next/navigation'
 
 
 // TODO #1: Turn page into a Component, each type of details page will have its own component which will be conditionally rendered depending on what type of details need to be shown (e.g. video, Product, or plan)
-
-// TODO #2: Create a format views utility to format the views to be 1.3M or 2.8K etc...
 
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const id = (await params).id
@@ -50,7 +48,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
             <div className='flex gap-1.5'>
               <EyeIcon className='size-6 text-primary top-2 relative'/>
-              <p className='category-tag'>{ytDetails ? ytDetails.view : views}</p>
+              <p className='category-tag'>{ytDetails ? formatViews(ytDetails.view) : views}</p>
             </div>
           </div>
 

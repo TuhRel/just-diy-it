@@ -6,13 +6,14 @@ export async function POST(req: Request) {
   try {
     const body = await req.json()
 
-    const { title, description, image, planId } = body
+    const { title, description, image, planId, price } = body
 
     updatePlan({
       title: title,
       description: description,
       image: image,
       planId: planId,
+      price: price,
     })
 
     return NextResponse.json({ message: 'Post submitted successfully' })

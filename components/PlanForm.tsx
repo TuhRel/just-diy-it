@@ -13,6 +13,7 @@ const PlanForm = () => {
     title: '',
     description: '',
     image: '',
+    price: 0,
   })
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -41,6 +42,7 @@ const PlanForm = () => {
         title: '',
         description: '',
         image: '',
+        price: 0,
       })
     } else {
       toast({
@@ -94,6 +96,19 @@ const PlanForm = () => {
             value={formData.image}
             onChange={handleChange}
             placeholder='imageUrl'/>
+        </div>
+        
+        <div>
+          <label
+            className='admin-form_label'
+            htmlFor="price">Price</label>
+          <Input
+            className='admin-form_input'
+            id="price"
+            name='price'
+            value={formData.price}
+            onChange={handleChange}
+            placeholder='Price'/>
         </div>
 
         <div>

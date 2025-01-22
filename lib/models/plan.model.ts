@@ -1,5 +1,5 @@
 import mongoose from "mongoose"
-import Counter from "./counter.model"
+import Counter from "@/lib/models/counter.model"
 
 
 const planSchema = new mongoose.Schema({
@@ -20,6 +20,9 @@ const planSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  price: {
+    type: Number,
+  }
 })
 
 planSchema.pre('save', async function (next) {
