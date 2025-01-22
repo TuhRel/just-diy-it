@@ -86,6 +86,8 @@ const Navbar = async () => {
               href="/plans">
                 <span>plans</span>
               </Link>
+                
+              {/* TODO: add more sign in options */}
               <form action={async () => {
                 "use server"
 

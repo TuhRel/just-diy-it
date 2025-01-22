@@ -5,7 +5,7 @@ import SearchForm from "@/components/SearchForm";
 import { getHomePageContent } from "@/lib/actions/post.actions";
 
 
-
+// TODO: add option as admin to delete and edit post
 export default async function Home({ searchParams }: { searchParams: Promise<{ query?: string }> }) {
   /** Search query obtained from the search bar */
   const query = (await searchParams).query
