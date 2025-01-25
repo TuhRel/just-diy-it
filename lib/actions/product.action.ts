@@ -18,7 +18,7 @@ export async function updateProduct({
   price,
   title,
 }: Params): Promise<void> {
-  connectDb("just-diy-it")
+  await connectDb("just-diy-it")
 
   try {
     if (!productId) {

@@ -28,7 +28,7 @@ export async function updatePost({
   ytDetails,
   views,
 }: Params): Promise <void> {
-  connectDb("just-diy-it")
+  await connectDb("just-diy-it")
 
   try {
     if (!postId) {
