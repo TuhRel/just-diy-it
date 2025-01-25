@@ -50,7 +50,7 @@ export async function updatePlan({
 }
 
 export async function getPlans(toFind: string) {
-  connectDb("just-diy-it")
+  await connectDb("just-diy-it")
 
   try {
     const plans = await Plan.find({ title: new RegExp(toFind, "i") })
@@ -65,7 +65,7 @@ export async function getPlans(toFind: string) {
 }
 
 export async function getPlanById(id: string) {
-  connectDb("just-diy-it")
+  await connectDb("just-diy-it")
 
   try {
     const plan = await Plan.findById(id)

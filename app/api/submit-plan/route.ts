@@ -8,7 +8,7 @@ export async function POST(req: Request) {
 
     const { title, description, image, planId, price } = body
 
-    updatePlan({
+    await updatePlan({
       title: title,
       description: description,
       image: image,

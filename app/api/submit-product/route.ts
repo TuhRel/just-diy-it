@@ -7,7 +7,7 @@ export async function POST(req: Request) {
 
     const { title, description, image, price, productId } = body
 
-    updateProduct({
+    await updateProduct({
       title: title,
       description: description,
       image: image,

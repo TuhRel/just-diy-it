@@ -51,7 +51,7 @@ export async function updateProduct({
 }
 
 export async function getProducts(toFind: string) {
-  connectDb("just-diy-it")
+  await connectDb("just-diy-it")
 
   try {
     const products = await Product.find({ title: new RegExp(toFind, "i") })
@@ -66,7 +66,7 @@ export async function getProducts(toFind: string) {
 }
 
 export async function getProductById(id: string) {
-  connectDb("just-diy-it")
+  await connectDb("just-diy-it")
 
   try {
     const product = await Product.findById(id)
