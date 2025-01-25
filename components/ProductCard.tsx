@@ -15,7 +15,6 @@ export type ProductCardType = {
 const ProductCard = async ({ product }: { product: ProductCardType }) => {
   const {
     id,
-    productId,
     description,
     image,
     price,
