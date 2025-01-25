@@ -71,7 +71,7 @@ export async function updatePost({
 
 /* GET all post(s) in the MongoDB databse */
 export async function getPosts(toFind: string) {
-  connectDb("just-diy-it")
+  await connectDb("just-diy-it")
 
   try {
     const posts = await Post.find({ title: new RegExp(toFind, "i")})
@@ -86,7 +86,7 @@ export async function getPosts(toFind: string) {
 }
 
 export async function getPostById(id: string) {
-  connectDb("just-diy-it")
+  await connectDb("just-diy-it")
 
   try {
     const post = await Post.findById(id)

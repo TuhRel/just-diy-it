@@ -7,7 +7,7 @@ export async function POST(req: Request) {
 
     const { title, description, image, ytVideo, postId } = body
 
-    updatePost({
+    await updatePost({
       postId: postId,
       createdAt: new Date(),
       title: title,
