@@ -5,16 +5,13 @@ import Counter from "@/lib/models/counter.model"
 const planSchema = new mongoose.Schema({
   planId: {
     type: Number,
-    required: true,
     unique: true,
   },
   description: {
     type: String,
-    required: true,
   },
   image: {
     type: String,
-    required: true,
   },
   title: {
     type: String,
