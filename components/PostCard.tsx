@@ -1,6 +1,7 @@
 import { formatDate } from '@/lib/utils'
 import Link from 'next/link'
 import { Button } from './ui/button'
+import DeleteButton from './DeleteButton';
 
 
 interface YTDetails {
@@ -46,23 +47,12 @@ const PostCard = async ({ post }: { post: PostCardType }) => {
 
       <div className='flex-between mt-5 gap-5'>
         <div className='flex-1'>
-          {/* <Link href={`/`}>
-            <p className='text-16-medium line-clamp-1'>author</p>
-          </Link> */}
           <Link href={`/details/${id}`}>
             <h3 className='text-26-semibold line-clamp-1'>
               {title.toUpperCase()}
             </h3>
           </Link>
         </div>
-        {/* <Link href={`/`}>
-          <Image
-            src="https://placehold.co/48x48" 
-            alt="placeholder"
-            width={48} 
-            height={48}
-            className='rounded-full' />
-        </Link> */}
       </div>
 
       <Link href={`/details/${id}`}>
@@ -84,12 +74,8 @@ const PostCard = async ({ post }: { post: PostCardType }) => {
         
       </Link>
 
-      <div className='flex-between gap-3 mt-5 !justify-end'>
-        {/* <Link href={`/?query=${plans.toLowerCase()}`}>
-          <p className='text-16-medium'>
-            {plans}
-          </p>
-        </Link> */}
+      <div className='flex-between gap-3 mt-5'>
+        <DeleteButton id={id} resourceType='posts' />
 
         <Button className='project-card_btn' asChild>
           <Link href={`/details/${id}`}>
