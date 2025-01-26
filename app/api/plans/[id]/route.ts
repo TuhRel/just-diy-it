@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { connectDb } from '@/lib/mongoose';
-import Product from '@/lib/models/product.model';
+import Plan from '@/lib/models/plan.model';
 
 export async function DELETE(req: Request, context: { params: { id: string } }) {
   const { id } = context.params;
@@ -8,7 +8,7 @@ export async function DELETE(req: Request, context: { params: { id: string } }) 
   await connectDb("just-diy-it");
 
   try {
-    const deletedProduct = await Product.findByIdAndDelete(id);
+    const deletedProduct = await Plan.findByIdAndDelete(id);
     if (!deletedProduct) {
       return NextResponse.json({ error: 'Product not found' }, { status: 404 });
     }

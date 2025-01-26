@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Button } from "./ui/button"
 import { DollarSignIcon } from "lucide-react"
-// import DeleteButton from "./DeleteButton"
+import DeleteButton from "./DeleteButton"
 
 
 export type PlanCardType = {
@@ -53,7 +53,7 @@ const PlanCard = async ({ plan }: { plan: PlanCardType }) => {
       </Link>
 
       <div className='flex-between gap-3 mt-5'>
-        {/* <DeleteButton id={id} resourceType='plans' /> */}
+        <DeleteButton id={id} resourceType='plans' />
 
         <Button className='project-card_btn' asChild>
           <Link href={`/plan-details/${id}`}>
