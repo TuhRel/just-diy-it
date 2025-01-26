@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Button } from "./ui/button"
 import { DollarSignIcon } from "lucide-react"
+import DeleteButton from "./DeleteButton"
 
 
 export type PlanCardType = {
@@ -24,10 +25,6 @@ const PlanCard = async ({ plan }: { plan: PlanCardType }) => {
   return (
     <li className='project-card group'>
       <div className='flex-between !justify-end'>
-        {/* <p className='project-card_date'>
-          {planId}
-        </p> */}
-
         <div className='flex gap-1.5'>
           <DollarSignIcon className='size-5 text-primary' />
           <span className='text-16-medium'>{price}</span>
@@ -36,23 +33,12 @@ const PlanCard = async ({ plan }: { plan: PlanCardType }) => {
 
       <div className='flex-between mt-5 gap-5'>
         <div className='flex-1'>
-          {/* <Link href={`/`}>
-            <p className='text-16-medium line-clamp-1'>{title}</p>
-          </Link> */}
           <Link href={`/plan-details/${id}`}>
             <h3 className='text-26-semibold line-clamp-1'>
               {title}
             </h3>
           </Link>
         </div>
-        {/* <Link href={`/`}>
-          <Image
-            src="https://placehold.co/48x48" 
-            alt="placeholder"
-            width={48} 
-            height={48}
-            className='rounded-full' />
-        </Link> */}
       </div>
 
       <Link href={`/plan-details/${id}`}>
@@ -66,12 +52,8 @@ const PlanCard = async ({ plan }: { plan: PlanCardType }) => {
           className='project-card_img' />
       </Link>
 
-      <div className='flex-between gap-3 mt-5 !justify-end'>
-        {/* <Link href={`/?query=${title.toLowerCase()}`}>
-          <p className='text-16-medium'>
-            {title}
-          </p>
-        </Link> */}
+      <div className='flex-between gap-3 mt-5'>
+        <DeleteButton id={id} resourceType="plans" />
 
         <Button className='project-card_btn' asChild>
           <Link href={`/plan-details/${id}`}>
