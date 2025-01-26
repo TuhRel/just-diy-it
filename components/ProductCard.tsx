@@ -57,7 +57,7 @@ const ProductCard = async ({ product }: { product: ProductCardType }) => {
     </Link>
 
     <div className='flex-between gap-3 mt-5'>
-      <DeleteButton id={id} resourceType="products" />
+      <DeleteButton id={id} resourceType="remove-product" />
 
       <Button className='project-card_btn' asChild>
         <Link href={`/product-details/${id}`}>

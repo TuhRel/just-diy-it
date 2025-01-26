@@ -6,7 +6,7 @@ import { useState } from "react";
 
 interface DeleteButtonProps {
   id: string; // The ID of the resource to delete
-  resourceType: "posts" | "products" | "plans"; // The type of resource
+  resourceType: "remove-post" | "remove-product" | "remove-plan"; // The type of resource
 }
 
 const DeleteButton = ({ id, resourceType }: DeleteButtonProps) => {

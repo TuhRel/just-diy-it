@@ -75,7 +75,7 @@ const PostCard = async ({ post }: { post: PostCardType }) => {
       </Link>
 
       <div className='flex-between gap-3 mt-5'>
-        <DeleteButton id={id} resourceType='posts' />
+        <DeleteButton id={id} resourceType='remove-post' />
 
         <Button className='project-card_btn' asChild>
           <Link href={`/details/${id}`}>
