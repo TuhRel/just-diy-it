@@ -5,7 +5,7 @@ import Plan from '@/lib/models/plan.model';
 
 export async function DELETE(
   req: Request,
-  { params }: { params: Record<string, string> }
+  params: Record<string, string>
 ) {
   const { id } = params
 
