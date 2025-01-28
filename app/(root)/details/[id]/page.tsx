@@ -51,10 +51,16 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
               <p className='category-tag'>{ytDetails ? formatViews(ytDetails.view) : views}</p>
             </div>
           </div>
-
-          <article>
+          
+          {ytDetails ?
+            <p dangerouslySetInnerHTML={{
+            __html: formatYouTubeDescription(ytDetails?.description),
+            }}></p> :
+            <p>{description}</p>}
+          
+          {/* <article>
             <p>{ytDetails ? ytDetails.description : description}</p>
-          </article>
+          </article> */}
         </div>
 
         <hr className='divider' />
@@ -64,3 +70,13 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
 }
 
 export default page
+
+function formatYouTubeDescription(description: string): string {
+  // Replace URLs with anchor tags
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  const formattedDescription = description
+    .replace(urlRegex, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>') // Convert URLs to links
+    .replace(/\n/g, '<br>'); // Replace newlines with <br> for line breaks
+
+  return formattedDescription;
+}
