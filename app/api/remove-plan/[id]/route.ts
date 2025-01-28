@@ -3,9 +3,10 @@ import { connectDb } from '@/lib/mongoose';
 import Plan from '@/lib/models/plan.model';
 
 export async function DELETE(
-  { params }: { params: { id: string } }
+  req: Request,
+  res: { params: { id: string } }
 ) {
-  const { id } = params;
+  const id = (await res.params).id
 
   await connectDb("just-diy-it");
 
