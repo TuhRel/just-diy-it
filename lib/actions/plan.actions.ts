@@ -78,3 +78,17 @@ export async function getPlanById(id: string) {
     }
   }
 }
+
+export async function deletePlan(id: string) {
+  await connectDb("just-diy-it");
+
+  try {
+    await Plan.findByIdAndDelete(id)
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      throw new Error(`Error deleting plan ${error.message}`)
+    } else {
+      console.error("An unknown error occurred.")
+    }
+  }
+}
