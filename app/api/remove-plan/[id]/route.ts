@@ -12,7 +12,7 @@ export async function DELETE(
   req: Request,
   params: DeleteParams
 ) {
-  const { id } = (await params.params)
+  const { id } = params.params
 
   await connectDb("just-diy-it");
 
