@@ -2,6 +2,7 @@ import { formatDate } from '@/lib/utils'
 import Link from 'next/link'
 import { Button } from './ui/button'
 import DeleteButton from './DeleteButton';
+import { auth } from '@/auth';
 
 
 interface YTDetails {
@@ -23,6 +24,10 @@ export type PostCardType = {
 }
 
 const PostCard = async ({ post }: { post: PostCardType }) => {
+  const session = await auth()
+  let admin = false
+  if (session?.user?.email === process.env.ADMIN_EMAIL) admin = true
+
   const {
     id,
     createdAt,
@@ -74,8 +79,10 @@ const PostCard = async ({ post }: { post: PostCardType }) => {
         
       </Link>
 
-      <div className='flex-between gap-3 mt-5'>
-        <DeleteButton id={id} resourceType='remove-post' />
+      <div className={!admin ? `flex-between gap-3 mt-5 !justify-end` : `flex-between gap-3 mt-5`}>
+        {admin && (
+          <DeleteButton id={id} resourceType='remove-plan' />
+        )}
 
         <Button className='project-card_btn' asChild>
           <Link href={`/details/${id}`}>
