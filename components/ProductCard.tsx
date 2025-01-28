@@ -2,6 +2,7 @@ import Link from "next/link"
 import { Button } from "./ui/button"
 import { DollarSignIcon } from "lucide-react"
 import DeleteButton from "./DeleteButton"
+import { auth } from "@/auth"
 
 
 export type ProductCardType = {
@@ -14,6 +15,10 @@ export type ProductCardType = {
 }
 
 const ProductCard = async ({ product }: { product: ProductCardType }) => {
+  const session = await auth()
+  let admin = false
+  if (session?.user?.email === process.env.ADMIN_EMAIL) admin = true
+
   const {
     id,
     description,
@@ -56,8 +61,10 @@ const ProductCard = async ({ product }: { product: ProductCardType }) => {
         className='project-card_img' />
     </Link>
 
-    <div className='flex-between gap-3 mt-5'>
-      <DeleteButton id={id} resourceType="products" />
+    <div className={!admin ? `flex-between gap-3 mt-5 !justify-end` : `flex-between gap-3 mt-5`}>
+        {admin && (
+          <DeleteButton id={id} resourceType='remove-plan' />
+        )}
 
       <Button className='project-card_btn' asChild>
         <Link href={`/product-details/${id}`}>
