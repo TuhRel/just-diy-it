@@ -5,11 +5,9 @@ import Plan from '@/lib/models/plan.model';
 
 export async function DELETE(
   req: Request,
-  context
+  context: { params: Promise<{ id: string }> }
 ) {
-  const { id } = context.params
-  // console.log(context)
-  // const { id } = params
+  const { id } = await context.params
 
   await connectDb("just-diy-it");
 
