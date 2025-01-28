@@ -81,7 +81,7 @@ const PostCard = async ({ post }: { post: PostCardType }) => {
 
       <div className={!admin ? `flex-between gap-3 mt-5 !justify-end` : `flex-between gap-3 mt-5`}>
         {admin && (
-          <DeleteButton id={id} resourceType='remove-plan' />
+          <DeleteButton id={id} resourceType='remove-post' />
         )}
 
         <Button className='project-card_btn' asChild>

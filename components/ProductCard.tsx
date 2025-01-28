@@ -63,7 +63,7 @@ const ProductCard = async ({ product }: { product: ProductCardType }) => {
 
     <div className={!admin ? `flex-between gap-3 mt-5 !justify-end` : `flex-between gap-3 mt-5`}>
         {admin && (
-          <DeleteButton id={id} resourceType='remove-plan' />
+          <DeleteButton id={id} resourceType='remove-product' />
         )}
 
       <Button className='project-card_btn' asChild>

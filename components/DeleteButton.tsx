@@ -1,7 +1,9 @@
 "use client";
 
+import { toast } from "@/hooks/use-toast";
 import { Trash2 } from "lucide-react";
 import { useState } from "react";
+import { ToastAction } from "./ui/toast";
 
 
 interface DeleteButtonProps {
@@ -13,28 +15,57 @@ const DeleteButton = ({ id, resourceType }: DeleteButtonProps) => {
   const [isDeleting, setIsDeleting] = useState(false);
 
   const deleteResource = async () => {
-    if (confirm(`Are you sure you want to delete this ${resourceType.slice(0, -1)}?`)) {
-      try {
-        setIsDeleting(true);
+    toast({
+      title: `Delete ${resourceType}?`,
+      description: "This action cannot be undone.",
+      action: (
+        <>
+          {/* Confirm Action */}
+          <ToastAction
+            className="bg-red-500"
+            altText="Confirm Delete"
+            onClick={async () => {
+              setIsDeleting(true); // Start loading
+              try {
+                // Dynamically construct the API endpoint based on resource type
+                const response = await fetch(`/api/${resourceType}/${id}`, {
+                  method: "DELETE",
+                });
 
-        // Dynamically construct the API endpoint based on resource type
-        const response = await fetch(`/api/${resourceType}/${id}`, {
-          method: "DELETE",
-        });
+                if (response.ok) {
+                  toast({
+                    title: "Success",
+                    description: `${resourceType} deleted successfully.`,
+                  });
+                  window.location.reload(); // Reload the page to reflect changes
+                } else {
+                  toast({
+                    title: "Error",
+                    description: `Failed to delete the ${resourceType}.`,
+                  });
+                }
+              } catch (error) {
+                console.error(`Error deleting ${resourceType}:`, error);
+                toast({
+                  variant: "destructive",
+                  title: "Error",
+                  description: "An error occurred while deleting the resource.",
+                });
+              } finally {
+                setIsDeleting(false); // End loading
+              }
+            }}
+          >
+            Confirm
+          </ToastAction>
 
-        if (response.ok) {
-          alert(`${resourceType.slice(0, -1).toUpperCase()} deleted successfully.`);
-          window.location.reload(); // Reload to reflect changes
-        } else {
-          alert(`Failed to delete the ${resourceType.slice(0, -1)}.`);
-        }
-      } catch (error) {
-        console.error(`Error deleting ${resourceType.slice(0, -1)}:`, error);
-        alert("An error occurred while deleting the resource.");
-      } finally {
-        setIsDeleting(false);
-      }
-    }
+          {/* Cancel Action */}
+          <ToastAction className="bg-black text-white-100" altText="Cancel Delete" onClick={() => {}}>
+            Cancel
+          </ToastAction>
+        </>
+      ),
+    });
   };
 
   return (
