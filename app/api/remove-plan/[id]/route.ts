@@ -5,9 +5,9 @@ import Plan from '@/lib/models/plan.model';
 
 export async function DELETE(
   req: Request,
-  context: Promise<{ params: {id: string} }>
+  context
 ) {
-  const { id } = (await context).params
+  const { id } = context.params
   // console.log(context)
   // const { id } = params
 
