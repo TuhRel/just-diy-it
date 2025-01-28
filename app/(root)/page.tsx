@@ -34,7 +34,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ q
       {/* Featured Content Section */}
       <section className="section_container">
         <p className="text-30-semibold">
-          {query ? `Content results for "${query}"` : "Latest Content"}
+          {query ? `Posts results for "${query}"` : "Latest Posts"}
         </p>
 
         <ul className="mt-7 card_grid">
