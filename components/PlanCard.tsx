@@ -16,9 +16,9 @@ export type PlanCardType = {
 
 const PlanCard = async ({ plan }: { plan: PlanCardType }) => {
   const session = await auth()
+
   let admin = false
-  if (session?.user?.email === process.env.ADMIN_EMAIL)
-    admin = true
+  if (session?.user?.email === process.env.ADMIN_EMAIL) admin = true
 
   const {
     id,
@@ -33,7 +33,7 @@ const PlanCard = async ({ plan }: { plan: PlanCardType }) => {
       <div className='flex-between !justify-end'>
         <div className='flex gap-1.5'>
           <DollarSignIcon className='size-5 text-primary' />
-          <span className='text-16-medium'>{price}</span>
+          <span className='text-16-medium'>{price == 0 ? 'FREE' : price}</span>
         </div>
       </div>
 
