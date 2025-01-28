@@ -2,17 +2,12 @@ import { NextResponse } from 'next/server';
 import { connectDb } from '@/lib/mongoose';
 import Plan from '@/lib/models/plan.model';
 
-interface DeleteParams {
-  params: {
-    id: string;
-  }
-}
 
 export async function DELETE(
   req: Request,
-  params: DeleteParams
+  context: { params: { id: string } }
 ) {
-  const { id } = params.params
+  const { id } = context.params
 
   await connectDb("just-diy-it");
 
